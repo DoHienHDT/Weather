@@ -14,7 +14,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var tableview: UITableView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var temp_cLabel: UILabel!
-    
+    @IBOutlet weak var todayLabel: UILabel!
+    @IBOutlet weak var avghumidityLabel: UILabel!
+    @IBOutlet weak var wind_kphLabel: UILabel!
+    @IBOutlet weak var vis_kmLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableview.backgroundColor = UIColor.clear
@@ -22,12 +25,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             self.dataWeather = forecastDay
             self.dataForecastday = forecastDay.weatherDay
             self.nameLabel.text = forecastDay.name
+            self.todayLabel.text = forecastDay.localtime_epoch.getDaysOfWeek()
             self.temp_cLabel.text = (String(forecastDay.temp_c)) + "º"
+            self.avghumidityLabel.text = (String((Int(forecastDay.humidity)))) + "%"
+            self.wind_kphLabel.text = (String(Int(forecastDay.wind_kph))) + "m/s"
+            self.vis_kmLabel.text = String(Int(forecastDay.vis_km)) + "Km"
             self.tableview.reloadData()
-
         }
-        
-        
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
